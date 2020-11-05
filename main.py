@@ -24,11 +24,8 @@ class KMeans(object):
         centroids = np.zeros(self.k*self.columnsLen).reshape(self.k,self.columnsLen)
         for i in range(self.k):
             data= self.df[labels==i]
-            # print(data.shape)
             mean=data.mean(axis=0)
             centroids[i]=mean
-        # print("________________________")
-        # print("NEW CENTROID")
         return centroids
             
     def fit(self,**kwargs):
@@ -41,7 +38,6 @@ class KMeans(object):
                 distancesToCenters=np.array(list(map(lambda y: self.__distancesBetweenPoints(x,y) , self.centers)))
                 minDistanceIndex = distancesToCenters.argmin()
                 minDistance = distancesToCenters.min()
-                # inertia+=  np.square(self.__distancesBetweenPoints(x,minDistance))
                 labels[index]=minDistanceIndex
             self.centers=self.updateCenters(labels)
             # self.plot(i)
